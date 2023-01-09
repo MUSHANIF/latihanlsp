@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('barangs', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('jnsid');
+            $table->string('name');
+            $table->string('harga');
+            $table->string('stok');
+            $table->string('status')->nullable();
+            $table->string('warna')->nullable();        
+            $table->string('image');
+            $table->string('deskripsi');
+            $table->timestamps();
+            $table->foreign('jnsid')->references('id')->on('jnsbarangs')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('barangs');
+    }
+};

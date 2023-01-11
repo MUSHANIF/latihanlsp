@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();            
             $table->unsignedBigInteger('userid');
             $table->unsignedBigInteger('jnsid');
-            $table->unsignedBigInteger('barangid');        
+            $table->unsignedBigInteger('layananid');        
             $table->date('waktu')->nullable();            
             $table->integer('status')->nullable();
             $table->timestamps();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('jnsid')->references('id')->on('jnsbarangs')->onDelete('cascade');
-            $table->foreign('barangid')->references('id')->on('barangs')->onDelete('cascade');
+            $table->foreign('jnsid')->references('id')->on('jnslayanans')->onDelete('cascade');
+            $table->foreign('layananid')->references('id')->on('layanans')->onDelete('cascade');
         });
     }
 

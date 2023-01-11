@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\jnslayananController;
+use App\Http\Controllers\layananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,22 +26,19 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::middleware('admin')->group(function () {
-        
+        Route::resource('jns', jnslayananController::class);
         Route::get('/dashboardAdmin', [dashboardController::class, 'index'])->name('dashboardAdmin');
-        Route::resource('jnsmotor', jnsmotorController::class);
+        Route::resource('layanan', layananController::class);
         
         
        
     });
     Route::middleware('user')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->middleware(['auth', 'verified'])->name('dashboard');
+        Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
     });
-    Route::middleware('user')->group(function () {
-        Route::get('/dashboardsuperadmin', function () {
-            return view('dashboard');
-        })->middleware(['auth', 'verified'])->name('dashboardsuperadmin');
+    Route::middleware('superadmin')->group(function () {
+        Route::get('/dashboardsuperadmin', [dashboardController::class, 'index'])->name('dashboardsuperadmin');
+    
     });
 });
 require __DIR__.'/auth.php';

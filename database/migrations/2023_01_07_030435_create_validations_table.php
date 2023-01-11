@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('validations', function (Blueprint $table) {
+            $table->id();       
             $table->unsignedBigInteger('userid');
             $table->string('image')->nullable();
-            $table->string('no_hp')->nullable();
-            $table->string('bigrafi')->nullable();                           
+            $table->string('no_hp')->nullable();            
+            $table->string('alamat')->nullable();    
+            $table->timestamps();                      
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
         });
     }

@@ -16,8 +16,13 @@
         @csrf
         <div class="col-12">
           <label for="inputNanme4" class="form-label">Name</label>
-          <input type="text" name="name" class="form-control" id="inputNanme4">
-        </div>              
+          <input type="text" name="name" class="form-control" id="inputNanme4" required>
+        </div>      
+        <div class="col-12">
+          <label for="inputNanme4" class="form-label">Image</label>
+          <input class="form-control" type="file" id="image" name="image" value="{{ old('image') }}" required/>
+                <img id="preview-image-before-upload" src="" alt="" style="width: 250px" class="mt-3" />
+        </div>    
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Submit</button>
           <button type="reset" class="btn btn-secondary">Reset</button>

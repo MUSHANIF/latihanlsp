@@ -20,6 +20,10 @@
   <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Helpers -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   
  
@@ -31,6 +35,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -252,30 +257,54 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="index.html">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
+     @can('superadmin')
+     <li class="nav-item">
+      <a class="nav-link " href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+       
+    @elsecan('admin')
+    <li class="nav-item">
+      <a class="nav-link " href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    @elsecan('user')
+    <li class="nav-item">
+      <a class="nav-link " href="{{ route('keranjang',Auth::id()) }}">
+        <i class="bi bi-grid"></i>
+        <span>Keranjang</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+     @endcan
+     @can('superadmin')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          @can('superadmin')
+        
           <li>
-            <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>admin</span>
+            <a href="/dataadmin">
+            <i class="bi bi-circle"></i><span>Admin</span>
             </a>
           </li>
           <li>
-            <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>Siswa</span>
+            <a href="/datauser">
+            <i class="bi bi-circle"></i><span>User</span>
             </a>
           </li>
+        </ul>
+      </li>
           @elsecan('admin')
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/jns ">
             <i class="bi bi-circle"></i><span>jenis layanan</span>
@@ -286,26 +315,24 @@
             <i class="bi bi-circle"></i><span>layanan</span>
             </a>
           </li>
+         
           <li>
-            <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>transaksi</span>
+            <a href="/kursi">
+            <i class="bi bi-circle"></i><span>Kursi</span>
             </a>
           </li>
           <li>
-            <a href="components-alerts.html">
+            <a href="/laporan">
             <i class="bi bi-circle"></i><span>laporan</span>
             </a>
           </li>
+        </ul>
+      </li>
           @elsecan('user')
-          <li>
-            <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>barang anda</span>
-            </a>
-          </li>
+       
           @endcan
 			
-		</ul>
-      </li><!-- End Components Nav -->
+		<!-- End Components Nav -->
 
      
 
@@ -359,7 +386,19 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <script type="text/javascript">
+    $(document).ready(function (e) {
+       $("#image").change(function () {
+          let reader = new FileReader();
 
+          reader.onload = (e) => {
+             $("#preview-image-before-upload").attr("src", e.target.result);
+          };
+
+          reader.readAsDataURL(this.files[0]);
+       });
+    });
+ </script>
   <!-- Vendor JS Files -->
   <script>
     @foreach($errors->all() as $error)

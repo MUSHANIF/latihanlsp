@@ -1,3 +1,6 @@
+@php
+    $today = date("Y-m-d");                
+@endphp
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +11,11 @@
     <link rel="stylesheet" href="/assets/splide.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+
     
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
@@ -56,6 +64,7 @@
 }
 .splide img{
     width: 100%;
+  
 }
 .card .card-title {
 text-decoration: none
@@ -66,6 +75,7 @@ text-decoration: none
 .card .card-img{
     width: 100%;
     height: 100px;
+    
 }
 .single-product {
   border: 1px solid #eee;
@@ -254,13 +264,13 @@ margin-top: 40px;
                 <a class="nav-link" href="#">Features</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Jenis layanan</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Layanan</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Info & Contact</a>
               </li>
             </ul>
             <ul class="navbar-nav  ">
@@ -273,7 +283,7 @@ margin-top: 40px;
                         @can('superadmin')
                         <li><a class="dropdown-item" href="{{ route('dashboardsuperadmin') }}">Dashboard</a></li>
                         @elsecan('user')
-                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{ route('keranjang',Auth::id()) }}">Dashboard</a></li>
                         @elsecan('admin')
                         <li><a class="dropdown-item" href="{{ route('dashboardAdmin') }}">Dashboard</a></li>
                         @endcan
@@ -324,8 +334,10 @@ margin-top: 40px;
       
         <div class="splide__track">
               <ul class="splide__list">
-                  <li class="splide__slide"><img src="/assets/image/ba.jpg" alt=""></li>
-                  <li class="splide__slide"><img src="/assets/image/banner.jpg" alt=""></li>                  
+                <li class="splide__slide"><img src="/assets/image/qw.jpg" alt=""></li>
+                  <li class="splide__slide"><img src="/assets/image/er.jpg" alt=""></li>
+                  <li class="splide__slide"><img src="/assets/image/ee.jpg" alt=""></li>                  
+                  <li class="splide__slide"><img src="/assets/image/ww.jpg" alt=""></li>   
                   
               </ul>
         </div>
@@ -334,7 +346,7 @@ margin-top: 40px;
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                    <h4 class="fw-semibold ">Jenis barang</h4>
+                    <h4 class="fw-semibold ">Jenis Layanan</h4>
                      
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have
                         suffered alteration in some form.</p>
@@ -342,6 +354,8 @@ margin-top: 40px;
                
             </div>
             <div class="row ">
+                @foreach ($datas as $key )
+                  
                 
                     <div class="col-md-4   ">
                         <div class="card ">
@@ -349,11 +363,11 @@ margin-top: 40px;
                           <div class="row ">
                            
                             <div class="col-md-4">
-                              <img class="card-img " src="/assets/image/h.jpg" alt="Card image" />
+                              <img class="card-img " src="/assets/images/jnslayanan/{{ $key->image }}" style="width: 100px;" alt="Card image" />
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
-                                <h5 class="card-title">Hotel</h5>
+                                <h5 class="card-title">{{ $key->name }}</h5>
                                 
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                               </div>
@@ -363,52 +377,19 @@ margin-top: 40px;
                         </a>
                         </div>
                       </div>
-                      <div class="col-md-4 item  ">
-                        <div class="card mb-3">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img class="card-img card-img-left" src="../assets/image/baby.jpg" alt="Card image" />
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h5 class="card-title">Pesawat</h5>
-                                <p class="card-text">
-                                  
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="card mb-3">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img class="card-img card-img-left" src="../assets/image/baby.jpg" alt="Card image" />
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h5 class="card-title">Kereta</h5>
-                                <p class="card-text">
-                                 
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      @endforeach
+                     
                         
             </div>
         </div>
       </section>
-      <section class="trending-product section" style="margin-top: 40px;">
+      <section class="trending-product section" style="margin-top: 40px; padding-top: 40px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center">
                         
-                            <h4 class="fw-semibold ">Trending product</h4>
+                            <h4 class="fw-semibold ">Layanan tersedia</h4>
                             
                         
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have
@@ -417,244 +398,111 @@ margin-top: 40px;
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
+              @foreach ($data as $dat )
+                
+              
+                <div class="col-lg-4 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="assets/images/products/product-1.jpg" alt="#">
+                            <img src="/assets/images/layanan/{{ $dat->image }}" alt="#">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                              <a id="pesan"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                data-userid="{{ Auth::id() }}"
+                                data-jnsid="{{ $dat->layanan->id }}"
+                                data-layananid="{{ $dat->id }}"
+                                data-waktu = "{{ $today }}"
+                                class="btn"><i class="lni lni-cart"></i>
+                                Add to Cart 
+                              </a>
+                               
+                              
+                                
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Watches</span>
+                            <span class="category">{{ $dat->layanan->name }}</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Xiaomi Mi Band 5</a>
+                                <a href="product-grids.html">{{ $dat->name }}</a>
                             </h4>
+                            <h4 class="price">
+                              <span>Tersisa {{ $dat->stok }} penumpang</span>
+                          </h4>
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
+                                <li><i class="lni lni-star-fill"></i></li>
+                                <li><i class="lni lni-star-fill"></i></li>
+                                <li><i class="lni lni-star-fill"></i></li>
+                                <li><i class="lni lni-star-fill"></i></li>
+                                <li><i class="lni lni-star-empty"></i></li>
                                 <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$199.00</span>
+                                <span>Rp. {{number_format($dat->harga, 0, '', '.') }} </span>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Product -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-2.jpg" alt="#">
-                            <span class="sale-tag">-25%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Speaker</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Big Power Sound Speaker</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$275.00</span>
-                                <span class="discount-price">$300.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-3.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Camera</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">WiFi Security Camera</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$399.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-4.jpg" alt="#">
-                            <span class="new-tag">New</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Phones</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">iphone 6x plus</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$400.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-5.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Headphones</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Wireless Headphones</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$350.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-6.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Speaker</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Mini Bluetooth Speaker</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$70.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-7.jpg" alt="#">
-                            <span class="sale-tag">-50%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Headphones</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">PX7 Wireless Headphones</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$100.00</span>
-                                <span class="discount-price">$200.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="assets/images/products/product-8.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Laptop</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Apple MacBook Air</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$899.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
+                @endforeach
             </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                @if ($user)
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+            
+               
+                <form action="{{ route('tambah',Auth::user()->id) }}" method="POST" >
+                  @csrf
+                  <input type="hidden" id="userid" name="userid" value="">
+                  <input type="hidden" id="jnsid" name="jnsid" value="">
+                  <input type="hidden" id="layananid" name="layananid" value="">                                                            
+                  <input type="hidden" id="waktu" name="waktu" value="">
+                  
+                <div class="row">
+                  <div class="col-md-12 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Untuk berapa orang?</label>
+                    <select class="form-select" id="exampleFormControlSelect1" name="nomor" aria-label="Default select example">
+                    
+                        <option  value="1">1</option>
+                        <option  value="2">2</option>
+                        <option  value="3">3</option>
+                        <option  value="4">4</option>
+                        <option  value="5">5</option>
+                        <option  value="6">6</option>
+  
+                        
+                       </select>
+                  </div>
+                </div>
+                
+                
+              
+            </div>
+       
+            <div class="modal-footer">
+              <button type="submit"class="btn"><i class="lni lni-cart"></i> Add to Cart</button>
+                
+            </form>
+            @else
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+            
+              <h2>Silahkan login atau register terlebih dahulu!</h2>
+            
+  
+                 
+               @endif
+              </div>
+            </div>
+          </div>
         </div>
     </section>
     <section id="footer" >
@@ -662,6 +510,26 @@ margin-top: 40px;
     <hr>
     <p>Copyright &copy; 2022 By Mumus</p>
 </footer>
+<script>
+  $(document).ready(function(){
+         $(document).on('click', '#pesan', function () {
+          var userid = $(this).data('userid');
+       var jnsid = $(this).data('jnsid');
+       var layananid = $(this).data('layananid');
+       var waktu = $(this).data('waktu');
+       
+ 
+       $('#userid').attr('value',userid);
+       $('#jnsid').attr('value',jnsid);
+       $('#layananid').attr('value',layananid);
+       $('#waktu').attr('value',waktu);
+     
+      
+       
+    });
+  });
+
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/assets/owl.carousel.js"></script>
@@ -670,7 +538,8 @@ margin-top: 40px;
    
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
   </body>
   <script>
@@ -702,5 +571,6 @@ splide.mount();
           },
         },
       });
+      
     </script>
 </html>

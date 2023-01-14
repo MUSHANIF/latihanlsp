@@ -42,8 +42,14 @@ class jnslayananController extends Controller
     {
         $data = $request->all();
         $model = new jnslayanan;
-      
+        $model->image = $request->image;
         $model->name = $request->name;
+        if ($image = $request->file('image')) {
+            $destinationPath = 'assets/images/jnslayanan';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $model['image'] = "$profileImage";
+        }
         $validasi = Validator::make($data, [
             'name' => 'required|max:191|unique:jnslayanans',
         ]);
@@ -103,7 +109,12 @@ class jnslayananController extends Controller
         if ($validasi->fails()) {
             return redirect()->route('jns.edit', $id)->withInput()->withErrors($validasi);
         }
-       
+        if ($image = $request->file('image')) {
+            $destinationPath = 'assets/images/jnslayanan';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $model['image'] = "$profileImage";
+        }
         $model->save();
 
         toastr()->success('Berhasil di ubah!', 'Sukses');

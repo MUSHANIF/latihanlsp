@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\layanan;
+use App\Models\kursi;
+use App\Models\jnslayanan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class layananController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  layanan::where('name','like',"%".$cari."%")->get();
+        $datas =  layanan::with(['layanan'])->where('name','like',"%".$cari."%")->get();
         return view('admin.layanan.index', compact('datas'));
     }
 
@@ -28,7 +30,7 @@ class layananController extends Controller
      */
     public function create()
     {
-        $datas =  DB::table('layanans')->get();
+        $datas =  DB::table('jnslayanans')->get();
         return view('admin.layanan.create', compact('datas'));
     }
 
@@ -42,19 +44,41 @@ class layananController extends Controller
     {
         $data = $request->all();
         $model = new layanan;
-      
+        
+        $model->jnsid = $request->jnsid;
         $model->name = $request->name;
+        $model->harga = $request->harga;
+        $model->status = $request->status;
+        
+        $model->image = $request->image;        
+        $model->deskripsi = $request->deskripsi;
+        if ($image = $request->file('image')) {
+            $destinationPath = 'assets/images/layanan';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $model['image'] = "$profileImage";
+        }
+
+
         $validasi = Validator::make($data, [
-            'name' => 'required|max:191|unique:layanans',
+            'name' => 'required|max:255',
+           
+            'harga' => 'required|max:15',
+            
+            'jnsid' => 'required',                                
+            
+            'deskripsi' => 'required|max:255',
+
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('jns.create')->withInput()->withErrors($validasi);
+            return redirect()->route('layanan.create')->withInput()->withErrors($validasi);
         }
        
         $model->save();
-
+       
+        
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/jns');
+        return redirect('/layanan');
     }
 
     /**
@@ -77,7 +101,8 @@ class layananController extends Controller
     public function edit($id)
     {
         $datas = layanan::find($id);
-        return view('admin.layanan.ubah',compact('datas'));
+        $data =  jnslayanan::all();
+        return view('admin.layanan.ubah',compact('datas','data'));
     }
 
     /**
@@ -89,25 +114,42 @@ class layananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model = layanan::findOrFail($id);
-        $data = $request->all();
-    
       
-        
+        $data = $request->all();
+        $model = layanan::findOrFail($id);
+      
+        $model->jnsid = $request->jnsid;
         $model->name = $request->name;
+        $model->harga = $request->harga;
+           
+             
+        $model->deskripsi = $request->deskripsi;
        
+
 
         $validasi = Validator::make($data, [
-            'name' => 'required|max:191|unique:layanans',
+            'name' => 'required|max:255',
+           
+            'harga' => 'required|max:15',
+            
+            'jnsid' => 'required',                                
+            
+            'deskripsi' => 'required|max:255',
+
         ]);
         if ($validasi->fails()) {
-            return redirect()->route('jns.edit', $id)->withInput()->withErrors($validasi);
+            return redirect()->route('layanan.create')->withInput()->withErrors($validasi);
         }
-       
+        if ($image = $request->file('image')) {
+            $destinationPath = 'assets/images/layanan';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $model['image'] = "$profileImage";
+        }
         $model->save();
 
-        toastr()->success('Berhasil di ubah!', 'Sukses');
-        return redirect('/jns');
+        toastr()->success('Berhasil di buat!', 'Sukses');
+        return redirect('/layanan');
     }
 
     /**
@@ -121,6 +163,6 @@ class layananController extends Controller
         $hapus = layanan::find($id);
         $hapus->delete();
         toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('jns');
+        return redirect('layanan');
     }
 }

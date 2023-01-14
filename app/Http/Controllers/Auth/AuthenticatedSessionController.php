@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::ADMIN);
         }
         toastr()->success('Selamat datang!', 'Halo');
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME2);
     }
 
     /**

@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class layanan extends Model
 {
     use HasFactory;
+     public function layanan()
+    {
+        return $this->belongsTo(jnslayanan::class, 'jnsid', 'id');
+    }
+    public function kurs()
+    {
+        return $this->hasMany(kursi::class, 'layananid', 'id');
+    }
+     public function carts()
+    {
+        return $this->hasMany(cart::class, 'layananid', 'id');
+    }
+    public function layan()
+    {
+        return $this->hasOne(layanan::class,  'id');
+    }
+    public function trans()
+    {
+        return $this->hasMany(transaksi::class, 'layananid', 'id');
+    }
 }

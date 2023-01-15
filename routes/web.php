@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
     Route::middleware('user')->group(function () {
         Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+        Route::get('/berhasil/{id}', [App\Http\Controllers\TransaksiController::class, 'berhasil'])->name('berhasil');
         Route::get('/keranjang/{id}', [App\Http\Controllers\TransaksiController::class, 'keranjang'])->name('keranjang');
         Route::post('/validation', [App\Http\Controllers\profileController::class, 'validasi'])->name('validation');
         Route::post('/tambah/{id}', [App\Http\Controllers\TransaksiController::class, 'tambah'])->name('tambah');
@@ -63,7 +64,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::middleware('superadmin')->group(function () {
         Route::get('/dashboardsuperadmin', [dashboardController::class, 'index'])->name('dashboardsuperadmin');
         Route::resource('dataadmin', adminController::class);
-        Route::resource('datauser', userController::class);
+        Route::get('/datauser', [App\Http\Controllers\userController::class, 'data'])->name('datauser');
+        Route::delete('/hapususer/{id}', [App\Http\Controllers\userController::class, 'delete'])->name('hapususer');
     });
 });
 require __DIR__.'/auth.php';

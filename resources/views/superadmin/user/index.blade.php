@@ -10,27 +10,28 @@
 @endsection
 @section('search')
 <div class="search-bar">
-    <form action="{{ url('dataUser') }}" method="GET" class="search-form d-flex align-items-center">
+    <form action="{{ url('datauser') }}" method="GET" class="search-form d-flex align-items-center">
       <input type="text" name="cari" placeholder="Search" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div><!-- End Search Bar -->
 @endsection
-@section('button')
-<a href="{{ route('dataUser.create') }}" class="btn btn-primary">Tambah</a>
-@endsection
+
 @section('isi')
 <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">User</h5>
+      <h5 class="card-title">User yang sudah validasi</h5>
 
       <!-- Table with hoverable rows -->
       <table class="table table-hover">
         <thead>
           <tr>
-            
+            <th scope="col">Image</th>
             <th scope="col">Name</th>
+            <th scope="col">No hp</th>
+            <th scope="col">Nik</th>
             <th scope="col">Email</th>
+            <th scope="col">Alamat</th>
             <th scope="col">Level</th>
             <th scope="col">Action</th>
        
@@ -41,13 +42,17 @@
         
         <tbody>
           <tr>
+            <td id="td"><img src="/assets/images/profile/{{ $key->image }}" style="height: 100px; width: 150px" /></td>
             <th scope="row">{{ $key->name }}</th>
+            <td scope="row">{{ $key->no_hp }}</td>
+            <td scope="row">{{ $key->nik }}</td>
             <td scope="row">{{ $key->email }}</td>
+            <td scope="row">{{ $key->alamat }}</td>
             <th scope="row">User</th>
             <td> 
-                  <a href="{{ route('datauser.edit',$key->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
+                  
             
-              <form action="{{ url('datauser/'.$key->id) }}" method="POST" >
+              <form action="{{ url('hapususer/'.$key->userid) }}" method="POST" >
                 @csrf
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>

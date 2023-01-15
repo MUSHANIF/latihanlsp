@@ -77,8 +77,8 @@ class layananController extends Controller
         $model->save();
        
         
-        toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/layanan');
+        
+        return redirect('/layanan')->with('success','data berhasil di simpan');
     }
 
     /**
@@ -148,8 +148,8 @@ class layananController extends Controller
         }
         $model->save();
 
-        toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/layanan');
+        
+    return redirect('/layanan')->with('success','data berhasil di simpan');
     }
 
     /**
@@ -162,7 +162,7 @@ class layananController extends Controller
     {
         $hapus = layanan::find($id);
         $hapus->delete();
-        toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('layanan');
+        
+        return redirect('layanan')->with('success','data berhasil di hapus');
     }
 }

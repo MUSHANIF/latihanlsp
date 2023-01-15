@@ -279,6 +279,18 @@
         <span>Keranjang</span>
       </a>
     </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/">
+        <i class="bi bi-grid"></i>
+        <span>Kembali ke menu</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+      <a class="nav-link " href="{{ route('berhasil',Auth::id()) }}">
+        <i class="bi bi-grid"></i>
+        <span>Tiket yang anda pesan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
      @endcan
      @can('superadmin')
       <li class="nav-item">
@@ -400,6 +412,21 @@
     });
  </script>
   <!-- Vendor JS Files -->
+  @if (Session::has('success'))
+  <script>
+ 
+    Notipin.Alert({
+        msg: "{{ Session::get('success') }}", 
+        yes: "OKE",
+        
+        type: "NORMAL",
+        mode: "DARK",
+        })
+        
+  
+    
+</script>
+  @endif
   <script>
     @foreach($errors->all() as $error)
     Notipin.Alert({

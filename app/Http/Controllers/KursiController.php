@@ -45,6 +45,7 @@ class kursiController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        DB::table('layanans')->where('id',$request->layananid)->update(['stok' => $request->nomor ]);
         $model = new kursi;
       if ($request->nomor) {
      
@@ -62,8 +63,8 @@ class kursiController extends Controller
        
         $model->save();
 
-        toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/kursi');
+        
+        return redirect('/kursi')->with('success','data berhasil di simpan');
     }
 
     /**

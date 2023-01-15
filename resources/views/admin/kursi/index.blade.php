@@ -11,7 +11,7 @@
 @section('search')
 <div class="search-bar">
     <form action="{{ url('kursi') }}" method="GET" class="search-form d-flex align-items-center">
-      <input type="text" name="cari" placeholder="Search" title="Enter search keyword">
+      <input type="text" name="cari" placeholder="Search" value="{{ old('cari') }}" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div><!-- End Search Bar -->
@@ -43,7 +43,13 @@
           <tr>
             <th scope="row">{{ $key->kur->name }}</th>
             <td>{{ $key->nomor }}</td>
-            <td>{{ $key->status }}</td>
+            <td>
+              @if ($key->status == 1)
+                Tersedia
+              @else
+                Tidak tersedia
+              @endif  
+            </td>
             <td> 
               <a href="{{ route('kursi.edit',$key->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
             

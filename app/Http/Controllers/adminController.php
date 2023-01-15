@@ -13,6 +13,7 @@ use App\Http\Requests\StoreadminRequest;
 use App\Http\Requests\UpdateadminRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Alert;
 class adminController extends Controller
 {
     public function index(Request $request)
@@ -66,8 +67,8 @@ class adminController extends Controller
        
         $model->save();
 
-        toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/dataadmin');
+        
+        return redirect('/dataadmin')->with('success','data berhasil di simpan');
     }
 
     /**
@@ -129,8 +130,8 @@ class adminController extends Controller
       
         $model->save();
 
-        toastr()->success('Berhasil di ubah!', 'Sukses');
-        return redirect('/dataadmin');
+        
+        return redirect('/dataadmin')->with('success','data berhasil di simpan');
     }
 
     /**
@@ -143,55 +144,8 @@ class adminController extends Controller
     {
         $hapus = User::find($id);
         $hapus->delete();
-        toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('dataadmin');
-    }
-    public function laporan(Request $request){
-        $tgl = $request->tgl;
         
-
-        if ($request->tgl) {
-            $datas =  cart::with([
-                'orang','mtr','user'])        
-            ->where('status', 2)
-            ->where('waktu_kembali', $tgl)
-            ->get();
-        } else {
-            $datas =  cart::with([
-                'orang','mtr','user'])        
-            ->where('status', 2)
-            ->where('waktu_kembali', date('Y-m-d'))
-            ->get();
-        }
-        // $datas = cart::with([
-        //     'orang','mtr','user'])        
-        // ->where('status', 2)
-        // ->get();
-      
-        return view('admin.laporan.index' , compact('datas','tgl'));
+        return redirect('dataadmin')->with('success','data berhasil di hapus');
     }
-    public function laporanbelum(){
-        $datas = cart::with([
-            'orang','mtr','user'])        
-        ->where('status', 1)
-        ->get();
-      
-        return view('admin.laporan.indexbelum' , compact('datas'));
-    }
-    public function pdf(){
-        $tanggal = date("Y-m-d");
-        $datas = cart::with([
-            'orang','mtr','user'])        
-        ->where('status', 2)
-        ->where('waktu_kembali', date('Y-m-d'))
-        ->get();
-        // return view('admin.laporan.pdf', compact('datas','tanggal'));
-            $pdf = PDF::loadview('admin.laporan.pdf', compact('datas','tanggal'));
-            return $pdf->download('laporanpdf.pdf');
-    }
-      public function excel(){
-      
-        return Excel::download(new LaporanExport, 'laporantransaksi.xlsx');
-      
-    }
+    
 }

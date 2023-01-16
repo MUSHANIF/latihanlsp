@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('userid');
             $table->unsignedBigInteger('layananid');
-            $table->string('durasi');   
+            $table->string('waktu')->nullable();
             $table->string('metode_pembayaran');   
-            $table->integer('total');   
+            $table->integer('total')->nullable();
+            $table->integer('bayar')->nullable();
             $table->integer('kembalian');   
             $table->timestamps();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');

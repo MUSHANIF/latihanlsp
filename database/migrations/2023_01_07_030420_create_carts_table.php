@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();            
             $table->unsignedBigInteger('userid');
             $table->unsignedBigInteger('jnsid');
-            $table->unsignedBigInteger('layananid');        
+            $table->unsignedBigInteger('layananid');  
+            $table->integer('jumlah')->nullable();      
             $table->date('waktu')->nullable();            
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('jnsid')->references('id')->on('jnslayanans')->onDelete('cascade');

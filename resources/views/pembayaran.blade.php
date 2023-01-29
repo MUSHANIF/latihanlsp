@@ -38,7 +38,7 @@
            @foreach ($layanan2 as $m )
                
            <input type="hidden" name="userid" value="{{ $m->userid }}">
-           <input type="hidden"  name="layananid" value="{{ $m->layananid }}"/>
+           <input type="hidden"  name="cartid" value="{{ $m->id }}"/>
            <input type="hidden"  name="jumlah" value="{{ $m->jumlah }}"/>
            <input type="hidden"  name="waktu" value="{{ date("Y-m-d") }}"/>
            @endforeach

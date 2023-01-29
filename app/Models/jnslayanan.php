@@ -12,4 +12,8 @@ class jnslayanan extends Model
     {
         return $this->hasMany(layanan::class, 'jnsid', 'id');
     }
+      public function cartss()
+    {
+        return $this->hasMany(cart::class, 'jnsid', 'id');
+    }
 }

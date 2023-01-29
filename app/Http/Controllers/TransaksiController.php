@@ -9,6 +9,8 @@ use App\Models\cart;
 use App\Models\layanan;
 use App\Models\jnslayanan;
 Use Alert;
+
+use PDF;
 use Illuminate\Support\Facades\DB;
 use Redirect;
 use Carbon\Carbon;
@@ -39,10 +41,9 @@ class TransaksiController extends Controller
     public function berhasil(Request $request , $id)
     {
         $cek =  cart::where('userid', $id)->where('status', 1)->first();
-       $cart = layanan::with(['carts', 'layanan'])
-       ->join('carts', 'carts.layananid', '=', 'layanans.id')
-       ->where('carts.userid',Auth::id()) 
-       ->where('carts.status', 1) 
+       $cart = cart::with(['cart', 'trans','jns'])       
+       ->where('userid',Auth::id()) 
+       ->where('status', 1) 
        ->get();
         
         $datas = validation::where('userid',  auth()->user()->id)->first();
@@ -57,12 +58,15 @@ class TransaksiController extends Controller
             toastr()->error('sudah ada dikeranjang anda!', 'gagal');
             return Redirect::back()->with('error','Sudah ada di keranjang anda');
         }else{
+            $layananharga = layanan::where('id',$request->layananid)->first();
+            $harga = $layananharga->harga;
             $model = new cart;
             $model->userid = $request->userid;
             $model->jnsid = $request->jnsid;
             $model->layananid = $request->layananid;
             $model->waktu = $request->waktu;
             $model->jumlah = $request->nomor;
+            $model->biaya = $harga * $request->nomor;
             
             
             $model->save(); 
@@ -97,10 +101,8 @@ class TransaksiController extends Controller
         $ORG =  cart::where('userid', $id)->where('status', 0)->first();
         
         $orang = $ORG->jumlah;
-        $layanan2 =  layanan::with([
-            'carts'])
-        ->join('carts', 'carts.layananid', '=', 'layanans.id')
-        ->where('carts.userid',Auth::id()) 
+        $layanan2 =  cart::with(['user','cart'])
+        ->where('userid',Auth::id()) 
         ->get();
         $jmlh =  cart::with(['user','cart'])->where('userid', $id)->where('status', 0)->count();
         $total =  layanan::with([
@@ -108,7 +110,7 @@ class TransaksiController extends Controller
         ->join('carts', 'carts.layananid', '=', 'layanans.id')
         ->where('carts.userid',Auth::id()) 
         ->where('carts.status', 0) 
-        ->sum('harga')   
+        ->sum('biaya')   
         ;
        return view('pembayaran',compact('layanan','jmlh','total','layanan2','orang'));
     }
@@ -118,7 +120,7 @@ class TransaksiController extends Controller
         ->join('carts', 'carts.layananid', '=', 'layanans.id')
         ->where('carts.userid',Auth::id()) 
         ->where('carts.status', 0) 
-        ->sum('harga')   
+        ->sum('biaya')   
         ;
         $data =   layanan::with([
             'carts'])
@@ -127,7 +129,7 @@ class TransaksiController extends Controller
         ->where('carts.status', 0) 
         ;
         $kursi = kursi::where('status', 1)->first();
-        $jumlah = $data->sum('harga');
+        $jumlah = $data->sum('biaya');
         $stok = $kursi->nomor;
         if($request->total >= $jumlah){
             
@@ -140,7 +142,7 @@ class TransaksiController extends Controller
         
             $model = new transaksi;
             $model->userid = $request->userid;
-            $model->layananid = $request->layananid;
+            $model->cartid = $request->cartid;
             $model->waktu = $request->waktu;
             $model->metode_pembayaran = $request->metode_pembayaran;
             $model->bayar = $request->total;
@@ -151,31 +153,40 @@ class TransaksiController extends Controller
             
             
             
-            return redirect()->route('keranjang', Auth::id())->with('success','pembayaran anda berhasil');
+            return redirect()->route('berhasil', Auth::id())->with('success','pembayaran anda berhasil');
         }else{  
-            $layanan =  cart::with(['user','cart'])->where('userid', $id)->where('status', 0)->get();
-        $ORG =  cart::where('userid', $id)->where('status', 0)->first();
+        //     $layanan =  cart::with(['user','cart'])->where('userid', $id)->where('status', 0)->get();
+        // $ORG =  cart::where('userid', $id)->where('status', 0)->first();
         
-        $orang = $ORG->jumlah;
-        $layanan2 =  layanan::with([
-            'carts'])
-        ->join('carts', 'carts.layananid', '=', 'layanans.id')
-        ->where('carts.userid',Auth::id()) 
-        ->get();
-        $jmlh =  cart::with(['user','cart'])->where('userid', $id)->where('status', 0)->count();
-        $total =  layanan::with([
-            'carts'])
-        ->join('carts', 'carts.layananid', '=', 'layanans.id')
-        ->where('carts.userid',Auth::id()) 
-        ->where('carts.status', 0) 
-        ->sum('harga')   
-        ;
-        Alert::error('Duit anda kurang!', 'Gagal!');
-        return view('pembayaran',compact('layanan','jmlh','total','layanan2','orang'))->with('error','duit anda kurang');
+        // $orang = $ORG->jumlah;
+        // $layanan2 =  layanan::with([
+        //     'carts'])
+        // ->join('carts', 'carts.layananid', '=', 'layanans.id')
+        // ->where('carts.userid',Auth::id()) 
+        // ->get();
+        // $jmlh =  cart::with(['user','cart'])->where('userid', $id)->where('status', 0)->count();
+        // $total =  layanan::with([
+        //     'carts'])
+        // ->join('carts', 'carts.layananid', '=', 'layanans.id')
+        // ->where('carts.userid',Auth::id()) 
+        // ->where('carts.status', 0) 
+        // ->sum('biaya')   
+        // ;
+        // Alert::error('Duit anda kurang!', 'Gagal!');
+        // return view('pembayaran',compact('layanan','jmlh','total','layanan2','orang'))->with('error','duit anda kurang');
+        return Redirect::back()->with('error','Uang yang anda masukan tidak mencukupi!');
         }
+       
 
     }
    
-   
+    public function bukti(Request $request,$id){
+        $cart = cart::with(['user','cart','jns','trans'])
+        ->where('userid',Auth::id()) 
+        ->whereRelation('trans', 'cartid' ,$request->bukti)        
+        ->get();
+        return view('bukti',compact('cart'));
+       
+    }
     
 }

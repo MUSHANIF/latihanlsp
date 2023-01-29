@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('/validation', [App\Http\Controllers\profileController::class, 'validasi'])->name('validation');
         Route::post('/tambah/{id}', [App\Http\Controllers\TransaksiController::class, 'tambah'])->name('tambah');
         Route::get('/pembayaran/{id}', [App\Http\Controllers\TransaksiController::class, 'pembayaran'])->name('pembayaran');
+        Route::get('/bukti/{id}', [App\Http\Controllers\TransaksiController::class, 'bukti'])->name('bukti');
         Route::post('/bayar/{id}', [App\Http\Controllers\TransaksiController::class, 'bayar'])->name('bayar');
         Route::delete('/hapus/{id}', [App\Http\Controllers\TransaksiController::class, 'hapus'])->name('hapus');
     });

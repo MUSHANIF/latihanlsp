@@ -16,4 +16,12 @@ class cart extends Model
     {
         return $this->belongsTo(layanan::class, 'layananid', 'id');
     }
+     public function jns()
+    {
+        return $this->belongsTo(jnslayanan::class, 'jnsid', 'id');
+    }
+    public function trans()
+    {
+        return $this->hasOne(transaksi::class, 'cartid', 'id');
+    }
 }

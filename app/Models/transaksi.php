@@ -10,7 +10,7 @@ class transaksi extends Model
     use HasFactory;
     public function transaksi()
     {
-        return $this->belongsTo(layanan::class, 'layananid', 'id');
+        return $this->belongsTo(cart::class, 'cartid', 'id');
     }
     public function transaksiuser()
     {

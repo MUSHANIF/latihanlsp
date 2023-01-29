@@ -28,7 +28,7 @@ class userController extends Controller
             ->get();
         $datas =  DB::table('users')->rightJoin('validations',  'users.id' , '=', 'validations.userid')
               ->where('users.name','like',"%".$cari."%")
-            ->where('users.level',1)
+            // ->where('users.level',1)
             
             ->get();
         return view('superadmin.user.index', compact('datas','data'));

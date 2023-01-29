@@ -26,7 +26,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+  <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -107,7 +107,19 @@
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  <script>
+    @foreach($errors->all() as $error)
+    Notipin.Alert({
+        msg: "{{ $error }}", 
+        yes: "OKE",
+        
+        type: "NORMAL",
+        mode: "DARK",
+        })
+        
+    @endforeach
+    
+</script>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

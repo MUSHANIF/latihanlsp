@@ -273,20 +273,20 @@
       </a>
     </li><!-- End Dashboard Nav -->
     @elsecan('user')
-    <li class="nav-item">
-      <a class="nav-link " href="{{ route('keranjang',Auth::id()) }}">
+    <li class="nav-item ">
+      <a class="nav-link {{ (request()->routeIs('keranjang',Auth::id())) ? '' : 'collapsed' }}" href="{{ route('keranjang',Auth::id()) }}">
         <i class="bi bi-grid"></i>
         <span>Keranjang</span>
       </a>
     </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/">
+    <li class="nav-item ">
+      <a class="nav-link {{ (request()->routeIs('/')) ? '' : 'collapsed' }}" href="/">
         <i class="bi bi-grid"></i>
         <span>Kembali ke menu</span>
       </a>
     </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-      <a class="nav-link " href="{{ route('berhasil',Auth::id()) }}">
+      <li class="nav-item ">
+      <a class="nav-link {{ (request()->routeIs('berhasil',Auth::id())) ? '' : 'collapsed' }} " href="{{ route('berhasil',Auth::id()) }}">
         <i class="bi bi-grid"></i>
         <span>Tiket yang anda pesan</span>
       </a>

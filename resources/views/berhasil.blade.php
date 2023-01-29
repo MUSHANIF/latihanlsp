@@ -2,7 +2,7 @@
 {{-- @section('button')
 <a href="{{ route('layanan.create') }}" class="btn btn-primary">Bayar semua</a>
 @endsection --}}
-@section('isidashboard')
+@section('isi')
 
 @if (!empty($cek))
   
@@ -20,6 +20,7 @@
             <th scope="col">Waktu</th>
             <th scope="col">jumlah</th>
             <th scope="col">Status</th>
+            <th scope="col">Lihat bukti </th>
             
           </tr>
         </thead>
@@ -29,8 +30,8 @@
           
           <tr>
             
-            <td>{{ $key->layanan->name }}</td>
-            <td>{{ $key->name }}</td>
+            <td>{{ $key->jns->name }}</td>
+            <td>{{ $key->cart->name }}</td>
             <td>{{ $key->waktu }}</td>
             <td>{{ $key->jumlah }}</td>
             <td>
@@ -40,7 +41,13 @@
               <span class="card text-bg-success p-1 text-white text-center">Sudah di bayar</span>
               @endif
             </td>
-            
+            <td>
+              <form action="{{ route('bukti',Auth::user()->id) }}" class="text-center">
+                <input type="hidden" value="{{ $key->id }}" name="bukti">
+                <button class="btn btn-danger text-center">Lihat</button>
+              </form>
+              
+            </td>
           </tr>
           @endforeach
         
@@ -57,7 +64,7 @@
   @endif
 
 @endsection
-@section('berita')
+{{-- @section('berita')
 <div class="col-lg-4">
 
         
@@ -97,4 +104,4 @@
   </div>
  <!-- News & Updates Traffic -->
  
-@endsection
+@endsection --}}

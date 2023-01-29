@@ -247,7 +247,8 @@ margin-top: 40px;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
-  <body>
+  <body>\
+    @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg bg-trasparent fixed-top shadow-lg p-3 mb-5 bg-body-tertiary rounded ">
         <div class="container">
           <a class="navbar-brand" href="#">MUMUS</a>
@@ -486,7 +487,7 @@ margin-top: 40px;
             </div>
        
             <div class="modal-footer">
-              <button type="submit"class="btn"><i class="lni lni-cart"></i> Add to Cart</button>
+              <button type="submit"class="btn btn-primary"><i class="lni lni-cart"></i> Add to Cart</button>
                 
             </form>
             @else

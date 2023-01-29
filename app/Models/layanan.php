@@ -24,8 +24,5 @@ class layanan extends Model
     {
         return $this->hasOne(layanan::class,  'id');
     }
-    public function trans()
-    {
-        return $this->hasMany(transaksi::class, 'layananid', 'id');
-    }
+  
 }

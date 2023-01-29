@@ -58,8 +58,8 @@
       <h5 class="card-title">Keranjang anda</h5>
      
       <!-- Active Table -->
-      <table class="table table-borderless">
-        <thead>
+      <table class="table table-borderless text-center">
+        <thead class="text-center">
           <tr>
             <th scope="col">Jenis layanan</th>
             <th scope="col">Nama layanan</th>            
@@ -81,7 +81,7 @@
             <td>{{ $key->jumlah }}</td>
             <td>
               @if ( $key->status == 0 )
-                Belum di bayar
+              <span class="card text-bg-danger p-1 text-white text-center">Belum di bayar</span>
               @else
                 Sudah di bayar
               @endif

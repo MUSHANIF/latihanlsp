@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HOME | MUMUS</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="/assets/splide.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -243,6 +245,72 @@ margin-top: 40px;
 .trending-product .section-title {
   margin-bottom: 20px;
 }
+.shipping-info {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.shipping-info ul {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0px;
+  align-content: center
+}
+
+.shipping-info li {
+  list-style: none;
+  float: left;
+  width: 25%;
+  padding: 30px 40px;
+  border: 1px solid #eee;
+  text-align: center;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .shipping-info li {
+    width: 50%;
+    display: flex;
+    align-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .shipping-info li {
+    width: 100%;
+  }
+}
+
+.shipping-info li:hover {
+  background-color: #fff;
+}
+
+.shipping-info .media-icon {
+  margin-bottom: 15px;
+}
+
+.shipping-info .media-icon i {
+  color: #0167F3;
+  font-size: 35px;
+}
+
+.shipping-info .media-body {
+  padding-bottom: 0px;
+}
+
+.shipping-info .media-body h5 {
+  font-size: 15px;
+  margin: 0px;
+  font-weight: 600;
+  color: #081828;
+}
+
+.shipping-info .media-body span {
+  font-size: 13px;
+  margin-top: 2px;
+  color: #777;
+}
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -261,14 +329,12 @@ margin-top: 40px;
               <li class="nav-item  mx-3">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
-              <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Features</a>
-              </li>
+            
               <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Jenis layanan</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Layanan</a>
+                <a class="nav-link" href="#">Paket</a>
               </li>
               <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Info & Contact</a>
@@ -284,7 +350,7 @@ margin-top: 40px;
                         @can('superadmin')
                         <li><a class="dropdown-item" href="{{ route('dashboardsuperadmin') }}">Dashboard</a></li>
                         @elsecan('user')
-                        <li><a class="dropdown-item" href="{{ route('keranjang',Auth::id()) }}">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{ route('keranjang',Auth::id()) }}">Keranjang</a></li>
                         @elsecan('admin')
                         <li><a class="dropdown-item" href="{{ route('dashboardAdmin') }}">Dashboard</a></li>
                         @endcan
@@ -343,7 +409,51 @@ margin-top: 40px;
               </ul>
         </div>
       </section>
-      <section>
+      <section class="shipping-info">
+        <div class="container justify-center">
+            <ul>
+                
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-delivery"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>Registrasi</h5>
+                        <span>On order over $99</span>
+                    </div>
+                </li>
+             
+                <li>
+                    <div class="media-icon">
+                        <i class="lni lni-reload"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5>Pilih destinasi</h5>
+                        <span>Hassle Free Shopping.</span>
+                    </div>
+                </li>
+                <li>
+                  <div class="media-icon">
+                      <i class="lni lni-delivery"></i>
+                  </div>
+                  <div class="media-body">
+                      <h5>Pembayaran</h5>
+                      <span>On order over $99</span>
+                  </div>
+              </li>
+              <li>
+                <div class="media-icon">
+                    <i class="lni lni-delivery"></i>
+                </div>
+                <div class="media-body">
+                    <h5>Nikmati perrjalanan</h5>
+                    <span>On order over $99</span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </section>
+      {{-- <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
@@ -383,14 +493,14 @@ margin-top: 40px;
                         
             </div>
         </div>
-      </section>
+      </section> --}}
       <section class="trending-product section" style="margin-top: 40px; padding-top: 40px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center">
                         
-                            <h4 class="fw-semibold ">Layanan tersedia</h4>
+                            <h4 class="fw-semibold ">Paket yang tersedia</h4>
                             
                         
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have
@@ -408,7 +518,7 @@ margin-top: 40px;
                         <div class="product-image">
                             <img src="/assets/images/layanan/{{ $dat->image }}" alt="#">
                             <div class="button">
-                              <a id="pesan"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                              {{-- <a id="pesan"  data-bs-toggle="modal" data-bs-target="#exampleModal"
                                 data-userid="{{ Auth::id() }}"
                                 data-jnsid="{{ $dat->layanan->id }}"
                                 data-layananid="{{ $dat->id }}"
@@ -416,18 +526,31 @@ margin-top: 40px;
                                 class="btn"><i class="lni lni-cart"></i>
                                 Add to Cart 
                               </a>
-                               
+                                --}}
+                              @auth
+                              <a href="{{ route('detail',$dat->id) }}" class="btn"><i class="bx bx-category icon"></i>
+                                Detail </a>
+                              @else
+                              <a id="pesan"  data-bs-toggle="modal" data-bs-target="#exampleModal"
                               
+                                class="btn"><i class="lni lni-cart"></i>
+                               Detail
+                              </a>
+                               
+                              @endauth
                                 
                             </div>
                         </div>
                         <div class="product-info">
                             <span class="category">{{ $dat->layanan->name }}</span>
                             <h4 class="title">
-                                <a href="product-grids.html">{{ $dat->name }}</a>
+                                <a href="product-grids.html" style="text-decoration: none;">{{ $dat->name }}</a>
                             </h4>
                             <h4 class="price">
-                              <span>Tersisa {{ $dat->stok }} penumpang</span>
+                              @foreach ($dat->kurs as $kue)
+                              <span>Tersisa {{ $kue->nomor }} Tiket!</span>
+                              @endforeach
+                          
                           </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-fill"></i></li>
@@ -452,44 +575,7 @@ margin-top: 40px;
             <div class="modal-content">
               <div class="modal-header">
                 @if ($user)
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-            
-               
-                <form action="{{ route('tambah',Auth::user()->id) }}" method="POST" >
-                  @csrf
-                  <input type="hidden" id="userid" name="userid" value="">
-                  <input type="hidden" id="jnsid" name="jnsid" value="">
-                  <input type="hidden" id="layananid" name="layananid" value="">                                                            
-                  <input type="hidden" id="waktu" name="waktu" value="">
-                  
-                <div class="row">
-                  <div class="col-md-12 mt-2">
-                    <label for="exampleFormControlInput1" class="form-label">Untuk berapa orang?</label>
-                    <select class="form-select" id="exampleFormControlSelect1" name="nomor" aria-label="Default select example">
-                    
-                        <option  value="1">1</option>
-                        <option  value="2">2</option>
-                        <option  value="3">3</option>
-                        <option  value="4">4</option>
-                        <option  value="5">5</option>
-                        <option  value="6">6</option>
-  
-                        
-                       </select>
-                  </div>
-                </div>
                 
-                
-              
-            </div>
-       
-            <div class="modal-footer">
-              <button type="submit"class="btn btn-primary"><i class="lni lni-cart"></i> Add to Cart</button>
-                
-            </form>
             @else
             <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

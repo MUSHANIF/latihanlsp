@@ -6,7 +6,7 @@
         <h5 class="mb-0">List pembayaran</h5>
         
       </div>
-      <div class="card-body">
+      <div class="card-body" style="color: black;">
        
             
      

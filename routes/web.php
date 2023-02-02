@@ -5,12 +5,14 @@ use App\Http\Controllers\dashboardController;
 use App\Models\jnslayanan;
 use App\Models\kursi;
 use App\Models\layanan;
+use App\Models\gallery;
 use App\Http\Controllers\jnslayananController;
 use App\Http\Controllers\layananController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\kursiController;
 use App\Http\Controllers\laporanController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,11 +32,25 @@ Route::get('/', function () {
     $user = Auth::id();
     
     
-    $data = layanan::with(['layanan','carts'])
+    $data = layanan::with(['layanan','carts','kurs'])
     ->where('status', 1)->get();
 
     return view('welcome',compact('datas','data','user'));
 });
+Route::get('/detail/{id}', function ($id) {
+    $user = Auth::id();         
+    $tambah = layanan::with(['layanan','carts'])
+    ->where('id', $id)
+    ->where('status', 1)->get();
+    $data = layanan::with(['layanan','carts','gallery'])
+    ->join('galleries', 'galleries.layananid', '=', 'layanans.id')
+    ->where('layanans.status', 1) ->whereRelation('gallery', 'layananid' ,$id) ->get();
+    $datas = layanan::with(['layanan','carts','gallery','kurs'])
+    ->join('galleries', 'galleries.layananid', '=', 'layanans.id')
+    ->whereRelation('gallery', 'layananid' ,$id)->groupBy('layananid')->get();
+    
+    return view('detail',compact('data','user','datas','tambah'));
+})->name('detail');
 Route::group(['middleware' => ['auth', 'verified']], function () {
  
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,6 +64,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/laporan', [laporanController::class, 'index']);
         Route::get('/laporanexcel', [laporanController::class, 'excel']);
         Route::get('/laporanpdf', [laporanController::class, 'pdf']);
+        Route::resource('detailgambar', GalleryController::class);
         
        
     });

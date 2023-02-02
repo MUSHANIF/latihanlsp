@@ -24,5 +24,11 @@ class layanan extends Model
     {
         return $this->hasOne(layanan::class,  'id');
     }
+    public function gallery()
+    {
+        return $this->hasMany(gallery::class, 'layananid', 'id');
+    }
   
+    
+ 
 }

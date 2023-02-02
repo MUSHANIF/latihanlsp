@@ -9,15 +9,20 @@
   </ol>
 @endsection
 @section('isi')
-<div class="card" style="color: black;">
+<div class="card">
     <div class="card-body">
-      <h5 class="card-title">Form tambah jenis layanan</h5>      
-      <form action="{{ route('jns.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
+      <h5 class="card-title">Form tambah Foto</h5>      
+      <form action="{{ route('detailgambar.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
         @csrf
         <div class="col-12">
-          <label for="inputNanme4" class="form-label">Name</label>
-          <input type="text" name="name" class="form-control" id="inputNanme4" required>
-        </div>      
+          <label for="inputNanme4" class="form-label">Jenis</label>
+              <select class="form-select" name="layananid" aria-label="Default select example">
+                @foreach ($datas as $key )
+                        <option value="{{ $key->id }}">{{ $key->name }}</option>
+                     @endforeach
+              </select>
+            
+        </div>
         <div class="col-12">
           <label for="inputNanme4" class="form-label">Image</label>
           <input class="form-control" type="file" id="image" name="image" value="{{ old('image') }}" required/>

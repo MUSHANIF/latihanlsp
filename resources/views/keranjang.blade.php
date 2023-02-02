@@ -55,7 +55,7 @@
 
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Keranjang anda</h5>
+      <h5 class="card-title" >Keranjang anda</h5>
      
       <!-- Active Table -->
       <table class="table table-borderless text-center">
@@ -89,9 +89,15 @@
             <td>
               <form action="{{ url('hapus/'.$key->id) }}" method="POST" >
                 @csrf
+                @foreach ($hapus as $hap )
+                  
+               
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="nomor" value="{{ $key->jumlah  }}">
-                <input type="hidden" name="layananid" value="{{ $key->id  }}">
+                @foreach ($hap->carts as $haps )                                 
+                  <input type="hidden" name="nomor" value="{{ $haps->jumlah  }}">
+                @endforeach
+                <input type="hidden" name="layananid" value="{{ $hap->id  }}">
+                @endforeach
                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                 
             </form>
@@ -110,7 +116,7 @@
     </div>
   </div>
   @else
-    <span class="text-center">Keranjang anda kosong</span>
+    <span class="text-center "style="color: black;">Keranjang anda kosong</span>
     
   @endif
 @endif

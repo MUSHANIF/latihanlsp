@@ -9,12 +9,17 @@
   </ol>
 @endsection
 @section('search')
-<div class="search-bar">
-    <form action="{{ url('dataadmin') }}" method="GET" class="search-form d-flex align-items-center">
-      <input type="text" name="cari" placeholder="Search" title="Enter search keyword">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </form>
-  </div><!-- End Search Bar -->
+<form action="{{ url('kursi') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+  <div class="input-group">
+    <input type="text" name="cari" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+    <div class="input-group-append">
+      <button type="submit" class="btn" style="background-color: #1840a9; color: white" type="button">
+        <i class="fa fa-sign-out-alt size-icon-1"></i>
+        Cari
+      </button>
+    </div>
+  </div>
+</form>
 @endsection
 @section('button')
 <a href="{{ route('dataadmin.create') }}" class="btn btn-primary">Tambah</a>

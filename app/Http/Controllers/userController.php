@@ -14,13 +14,7 @@ class userController extends Controller
     {
         $cari = $request->cari;
         
-        $tanggal = date("Y-m-d");   
-        // $data1 = User::where('level', 1)->get();
-        // $data2 = User::get(['id']);
-        // $data  = validation::where('userid',$data2)->first();
-        // $data2 = $data5->userid;
-        // $data3 = $data1->id;
-        // $data6 = $data2 === $data3;
+        $tanggal = date("Y-m-d");           
         $data =  User::with([
             'validationn'])
             ->Join('validations', 'validations.userid', '=', 'users.id')
@@ -28,7 +22,7 @@ class userController extends Controller
             ->get();
         $datas =  DB::table('users')->rightJoin('validations',  'users.id' , '=', 'validations.userid')
               ->where('users.name','like',"%".$cari."%")
-            // ->where('users.level',1)
+            
             
             ->get();
         return view('superadmin.user.index', compact('datas','data'));

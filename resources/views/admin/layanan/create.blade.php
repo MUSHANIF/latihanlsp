@@ -40,7 +40,14 @@
           <label for="inputNanme4" class="form-label">Harga</label>
           <input type="number" name="harga" class="form-control" id="inputNanme4">
         </div>     
-      
+        <div class="col-12">
+          <label for="inputNanme4" class="form-label">Bahasa</label>
+          <input type="number" name="bahasa" class="form-control" id="inputNanme4">
+        </div> 
+        <div class="col-12">
+          <label for="inputNanme4" class="form-label">Lokasi</label>
+          <input type="number" name="lokasi" class="form-control" id="inputNanme4">
+        </div> 
         <div class="col-12">
           <label for="inputNanme4" class="form-label">Deskripsi</label>
           <textarea class="form-control" placeholder="Deskripsi" name="deskripsi" id="floatingTextarea" style="height: 100px;"></textarea>

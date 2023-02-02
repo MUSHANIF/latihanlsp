@@ -9,395 +9,199 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('assets/boxicons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/boxicons.min.css') }}" />
   <script src="https://cdn.statically.io/gh/devanka761/notipin/v1.24.49/all.js"></script>
-  <!-- Vendor CSS Files -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-  <!-- Helpers -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  
- 
-
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet">
 
 
 </head>
 
 <body>
-  @include('sweetalert::alert')
+  <div class="topbar transition">
+    <div class="bars">
+      <button type="button" class="btn transition" id="sidebar-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="">
-        <span class="d-none d-lg-block">Mumus</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    @yield('search')
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
+    <div class="menu">
+      <ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/images/profile/{{ Auth::user()->validationn->image }}" alt="" />
           </a>
-        </li><!-- End Search Icon-->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/img/messages-1.jpg') }}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/img/messages-2.jpg') }}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/img/messages-3.jpg') }}" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>{{ Auth::user()->name }}</h6>
-              <span>{{ Auth::user()->email }}</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             
-            <li>
-              <a class="dropdown-item d-flex align-items-center"  href="{{ route('profile.edit') }}">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-        
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center"  href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                     <i class="bi bi-box-arrow-right"></i>
-                     <span>Sign Out</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                      @csrf
-                    </form>
             
-               
-             
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
+            
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out-alt size-icon-1"></i> <span>Log out</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                        </form>
+          </ul>
+        </li>
       </ul>
-    </nav><!-- End Icons Navigation -->
+    </div>
+    <div class="search">
+      @yield('search')
+    </div>
+  </div>
+  <div class="sidebar transition overlay-scrollbars">
+    <div class="sidebar-content">
+      <div id="sidebar">
+        <div class="logo">
+          <h2 class="mb-0">Travel</h2>
+        </div>
+@can('superadmin')
+<ul class="side-menu">
+  {{-- <li>
+    <a href="/dashboardsuperamdin" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+  </li> --}}
 
-  </header><!-- End Header -->
+  <li>
+    <a href="/dataadmin">
+      <i class="bx bx-columns icon"></i>
+      Admin
+    </a>
+  </li>
+  <li>
+    <a href="/datauser">
+      <i class="bx bx-columns icon"></i>
+      User
+    </a>
+  </li>
+ 
+</ul>
+@elsecan('admin')
+<ul class="side-menu">
+  <li>
+    <a href="index.html" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+  </li>
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  <li>
+    <a href="/jns">
+      <i class="bx bx-collection icon"></i>
+      Jenis layanan 
+    </a>
+  </li>
+  <li>
+    <a href="/layanan">
+      <i class="bx bx-folder icon"></i>
+      Paket Travel
+    </a>
+  </li>
+  <li>
+    <a href="/kursi">
+      <i class="bx bx-menu icon"></i>
+      Stok
+    </a>
+  </li>
+  <li>
+    <a href="/detailgambar">
+      <i class="bx bx-movie-play icon"></i>
+      Galeri
+    </a>
+  </li>
+  <li>
+    <a href="/laporan">
+      <i class="bx bx-columns icon"></i>
+      Laporan
+    </a>
+  </li>
+</ul>
+@elsecan('user')
+<ul class="side-menu">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
 
-     @can('superadmin')
-     <li class="nav-item">
-      <a class="nav-link " href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+  <li>
+    <a href="{{ route('keranjang',Auth::id()) }}">
+      <i class="bx bx-columns icon"></i>
+      Keranjang
+    </a>
+  </li>
+  <li>
+    <a href="/">
+      <i class="bx bx-columns icon"></i>
+      Kembali ke menu
+    </a>
+  </li>
+  <li>
+    <a href="{{ route('berhasil',Auth::id()) }}">
+      <i class="bx bx-columns icon"></i>
+      Tiket yang anda pesan
+    </a>
+  </li>
+</ul>
+@endcan
        
-    @elsecan('admin')
-    <li class="nav-item">
-      <a class="nav-link " href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    @elsecan('user')
-    <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('keranjang',Auth::id())) ? '' : 'collapsed' }}" href="{{ route('keranjang',Auth::id()) }}">
-        <i class="bi bi-grid"></i>
-        <span>Keranjang</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('/')) ? '' : 'collapsed' }}" href="/">
-        <i class="bi bi-grid"></i>
-        <span>Kembali ke menu</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-      <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('berhasil',Auth::id())) ? '' : 'collapsed' }} " href="{{ route('berhasil',Auth::id()) }}">
-        <i class="bi bi-grid"></i>
-        <span>Tiket yang anda pesan</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-     @endcan
-     @can('superadmin')
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        
-          <li>
-            <a href="/dataadmin">
-            <i class="bi bi-circle"></i><span>Admin</span>
-            </a>
-          </li>
-          <li>
-            <a href="/datauser">
-            <i class="bi bi-circle"></i><span>User</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-          @elsecan('admin')
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/jns ">
-            <i class="bi bi-circle"></i><span>jenis layanan</span>
-            </a>
-          </li>
-          <li>
-            <a href="/layanan">
-            <i class="bi bi-circle"></i><span>layanan</span>
-            </a>
-          </li>
-         
-          <li>
-            <a href="/kursi">
-            <i class="bi bi-circle"></i><span>Kursi</span>
-            </a>
-          </li>
-          <li>
-            <a href="/laporan">
-            <i class="bi bi-circle"></i><span>laporan</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-          @elsecan('user')
-       
-          @endcan
-			
-		<!-- End Components Nav -->
-
-     
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      @yield('antena')
-        <div class=" align-right justify-content-around">
-          
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+      <section class="section dashboard">
+  <div class="content-start transition">
+    <div class="container-fluid dashboard">
+      <div class="row">
+        <div class="col mb-4">
           @yield('button')
         </div>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section dashboard">
-      <div class="row">
-        @yield('isi')
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-           
-
-        
-            @yield('isidashboard')
-            
-
-          
-
-          </div>
-        </div><!-- End Left side columns -->
-        @yield('berita')
-        <!-- Right side columns -->
-       <!-- End Right side columns -->
-       
-
       </div>
-    </section>
+      <div class="row">
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>Mumus</span></strong>. All Rights Reserved
+				<!--Start Carousel-->
+				
+      
+      @yield('isi')
+           
+          </div>
+        
     </div>
-   
-  </footer><!-- End Footer -->
+  
+  </div>
+      </section>
+  
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="jquery/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#sidebar-toggle, .sidebar-overlay").click(function () {
+        $(".sidebar").toggleClass("sidebar-show");
+        $(".sidebar-overlay").toggleClass("d-block");
+      });
+    });
+    const allDropdown = document.querySelectorAll("#sidebar .side-dropdown");
+    const sidebar = document.getElementById("sidebar");
+  </script>
+</body>
+
+
+
+
+
+ 
   <script type="text/javascript">
     $(document).ready(function (e) {
        $("#image").change(function () {
@@ -440,11 +244,11 @@
     @endforeach
     
 </script>
-  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  
  
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset('assets/js/main.js') }}"></script>
+  
+  
 
 </body>
 

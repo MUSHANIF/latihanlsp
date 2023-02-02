@@ -9,12 +9,17 @@
   </ol>
 @endsection
 @section('search')
-<div class="search-bar">
-    <form action="{{ url('layanan') }}" method="GET" class="search-form d-flex align-items-center" >
-      <input type="text" name="cari" placeholder="Search" title="Enter search keyword">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </form>
-  </div><!-- End Search Bar -->
+<form action="{{ url('layanan') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+  <div class="input-group">
+    <input type="text" name="cari" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+    <div class="input-group-append">
+      <button type="submit" class="btn" style="background-color: #1840a9; color: white" type="button">
+        <i class="fa fa-sign-out-alt size-icon-1"></i>
+        Cari
+      </button>
+    </div>
+  </div>
+</form>
 @endsection
 @section('button')
 <a href="{{ route('layanan.create') }}" class="btn btn-primary">Tambah</a>
@@ -33,7 +38,7 @@
             <th scope="col">Jenis</th>
             <th scope="col">Name</th>
             <th scope="col">Harga</th>
-            <th scope="col">Stok</th>
+            {{-- <th scope="col">Stok</th> --}}
             <th scope="col">Status</th>
             <th scope="col">Deskripsi</th>
             <th scope="col">Action</th>
@@ -51,8 +56,13 @@
             <td scope="row">{{ $key->layanan->name }}</td>
             <td scope="row">{{ $key->name }}</td>
             <td scope="row">{{ $key->harga }}</td>
-            <td scope="row">{{ $key->stok }}</td>
-            <td scope="row">{{ $key->status }}</td>
+            {{-- <td scope="row">{{ $key->stok }}</td> --}}
+            
+            @if ($key->status == 1)
+            <td scope="row">Tersedia</td>
+            @else
+            <td scope="row">Tidak Tersedia</td>
+            @endif
             <td scope="row">{{ $key->deskripsi }}</td>
             <td> 
               <a href="{{ route('layanan.edit',$key->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>

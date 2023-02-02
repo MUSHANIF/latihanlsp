@@ -85,7 +85,7 @@
     @foreach ($datas as $key) 
     <tbody>
         <tr class="align-self-center text-center"  style="border: 1px solid black;">
-         <th   >{{ $key->transaksiuser->name }}</th>
+         <td   >{{ $key->transaksiuser->name }}</td>
             <td>{{ $key->transaksi->name }}</td>
             <td>{{ $key->metode_pembayaran }}</td>
             <td>{{ $key->jumlah }}</td>

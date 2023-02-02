@@ -17,7 +17,7 @@
             <th scope="col">Metode pembayaran</th>
             <th scope="col">Jumlah</th>
             <th scope="col">Total bayar</th>
-            <th scope="col">Action</th>
+            
        
           </tr>
         </thead>
@@ -32,16 +32,7 @@
             <td>{{ $key->metode_pembayaran }}</td>
             <td>{{ $key->jumlah }}</td>
             <td>Rp. {{number_format($key->bayar, 0, '', '.') }}</td>
-            <td> 
-              <a href="{{ route('jns.edit',$key->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
             
-              <form action="{{ url('jns/'.$key->id) }}" method="POST" >
-                @csrf
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-                
-            </form>
-          </td>
           </tr>
          
         </tbody>

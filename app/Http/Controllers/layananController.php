@@ -49,6 +49,8 @@ class layananController extends Controller
         $model->name = $request->name;
         $model->harga = $request->harga;
         $model->status = $request->status;
+        $model->bahasa = $request->bahasa;
+        $model->lokasi = $request->lokasi;
         
         $model->image = $request->image;        
         $model->deskripsi = $request->deskripsi;
@@ -66,6 +68,9 @@ class layananController extends Controller
             'harga' => 'required|max:15',
             
             'jnsid' => 'required',                                
+            'lokasi' => 'required|max:15',
+            
+            'bahasa' => 'required',                                
             
             'deskripsi' => 'required|max:255',
 

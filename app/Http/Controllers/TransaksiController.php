@@ -32,10 +32,14 @@ class TransaksiController extends Controller
        ->where('carts.userid',Auth::id()) 
        ->where('carts.status', 0) 
        ->get();
+        $hapus =layanan::with(['carts', 'layanan'])
+        ->whereRelation('carts', 'userid' ,$id)        
+        ->whereRelation('carts', 'status' ,0) 
         
+        ->get(); 
         $datas = validation::where('userid',  auth()->user()->id)->first();
     
-        return view('keranjang',compact('datas','cart','cek'));
+        return view('keranjang',compact('datas','cart','cek','hapus'));
        
     }
     public function berhasil(Request $request , $id)
@@ -83,11 +87,11 @@ class TransaksiController extends Controller
     public function hapus(Request $request, $id)
     {
         //error
-    //     $prod = kursi::where('status',  1 )->first();
-    //     kursi::where('layananid',$request->layananid)->update([
-    //        'nomor' => $prod->nomor + $request->nomor,
+        $prod = kursi::where('status',  1 )->first();
+        kursi::where('layananid',$request->layananid)->update([
+           'nomor' => $prod->nomor + $request->nomor,
          
-    //    ]);
+       ]);
         $hapus = cart::find($id);
         $hapus->delete();
        
@@ -138,7 +142,7 @@ class TransaksiController extends Controller
                 'carts'])
             ->join('carts', 'carts.layananid', '=', 'layanans.id')
             ->where('carts.userid',Auth::id()) 
-            ->update(['layanans.stok' => $stok ,'carts.status' => 1]);
+            ->update(['carts.status' => 1]);
         
             $model = new transaksi;
             $model->userid = $request->userid;

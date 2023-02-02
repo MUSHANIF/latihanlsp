@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('userid');
-            $table->unsignedBigInteger('layananid');
+            $table->unsignedBigInteger('cartid');
             $table->string('waktu')->nullable();
             $table->string('metode_pembayaran');   
             $table->integer('total')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('kembalian');   
             $table->timestamps();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('layananid')->references('id')->on('layanans')->onDelete('cascade');
+            $table->foreign('cartid')->references('id')->on('carts')->onDelete('cascade');
             
         });
     }

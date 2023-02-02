@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('jnsid');
             $table->string('name');
             $table->string('harga');
-            $table->string('stok')->nullable();
+            $table->string('fitur')->nullable();
+            $table->string('bahasa')->nullable();
+            $table->string('lokasi')->nullable();
             $table->string('status')->nullable();               
             $table->string('image');
             $table->string('deskripsi');
@@ -37,3 +39,4 @@ return new class extends Migration
         Schema::dropIfExists('layanans');
     }
 };
+

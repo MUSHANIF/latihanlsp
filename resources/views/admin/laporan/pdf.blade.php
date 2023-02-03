@@ -86,7 +86,15 @@
     <tbody>
         <tr class="align-self-center text-center"  style="border: 1px solid black;">
          <td   >{{ $key->transaksiuser->name }}</td>
-            <td>{{ $key->transaksi->name }}</td>
+         <td>
+            @foreach ($data as $i )
+             @if ($key->transaksi->layananid === $i->id)
+             {{ $i->name }}
+            @endif
+            @endforeach
+
+           
+          </td>
             <td>{{ $key->metode_pembayaran }}</td>
             <td>{{ $key->jumlah }}</td>
             <td>Rp. {{number_format($key->bayar, 0, '', '.') }}</td>

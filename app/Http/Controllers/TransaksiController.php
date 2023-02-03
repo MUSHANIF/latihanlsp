@@ -32,7 +32,7 @@ class TransaksiController extends Controller
        ->where('carts.userid',Auth::id()) 
        ->where('carts.status', 0) 
        ->get();
-        $hapus =layanan::with(['carts', 'layanan'])
+        $hapus = layanan::with(['carts', 'layanan'])
         ->whereRelation('carts', 'userid' ,$id)        
         ->whereRelation('carts', 'status' ,0) 
         

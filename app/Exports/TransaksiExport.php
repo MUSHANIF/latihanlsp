@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\transaksi;
+use App\Models\layanan;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -17,7 +18,8 @@ class TransaksiExport implements FromView
         return view('admin.laporan.excel', [
             'datas' =>  transaksi::with([
                 'transaksi','transaksiuser'
-            ])->get()
+            ])->get(),
+            'data' => layanan::with(['carts', 'layanan'])->get()
         ]);
     }
 }

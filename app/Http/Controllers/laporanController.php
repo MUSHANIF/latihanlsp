@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\transaksi;
+use App\Models\layanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,18 +16,21 @@ class laporanController extends Controller
         $datas =  transaksi::with([
             'transaksi','transaksiuser'
         ])->get();
-        return view('admin.laporan.index', compact('datas'));
+         $data =  layanan::with(['carts', 'layanan'])->get();
+        
+        return view('admin.laporan.index', compact('datas','data'));
     }
     public function excel(){
       
-        return Excel::download(new TransaksiExport, 'transaksi.xlsx');
+        return Excel::download(new TransaksiExport, 'transaksis.xlsx');
       
     }
     public function pdf(){
        $datas =  transaksi::with([
         'transaksi','transaksiuser'
     ])->get();
-        $pdf = PDF::loadview('admin.laporan.pdf', compact('datas'));
+    $data =  layanan::with(['carts', 'layanan'])->get();
+        $pdf = PDF::loadview('admin.laporan.pdf', compact('datas','data'));
         return $pdf->download('laporanpdf.pdf');
        
     }

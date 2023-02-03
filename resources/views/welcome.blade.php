@@ -319,7 +319,7 @@ margin-top: 40px;
     @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg bg-trasparent fixed-top shadow-lg p-3 mb-5 bg-body-tertiary rounded ">
         <div class="container">
-          <a class="navbar-brand" href="#">MUMUS</a>
+          <a class="navbar-brand" href="#"></a> <img src="{{ asset('assets/image') }}" alt="">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

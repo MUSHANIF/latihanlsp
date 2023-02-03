@@ -21,7 +21,18 @@
     <tbody>
         <tr class="align-self-center text-center"  style="border: 1px solid black;">
             <th colspan="3">{{ $key->transaksiuser->name }}</th>
-            <td colspan="3" >{{ $key->transaksi->name }}</td>
+            <td colspan="3">
+
+            
+                    @foreach ($data as $i )
+                     @if ($key->transaksi->layananid === $i->id)
+                     {{ $i->name }}
+                    @endif
+                    @endforeach
+        
+                   
+               
+            </td>
             <td colspan="3">{{ $key->metode_pembayaran }}</td>
             <td colspan="2">{{ $key->jumlah }}</td>
             <td colspan="2">Rp. {{number_format($key->bayar, 0, '', '.') }}</td>

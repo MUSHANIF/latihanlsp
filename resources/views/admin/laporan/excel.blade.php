@@ -13,7 +13,7 @@
    
     <thead class="align-self-center text-center">
         <tr>
-            <th colspan="12" class="text-center"><h2 style="align-content: center">Data transaksi</h2></th>
+            <th colspan="13" class="text-center"><h2 style="align-content: center">Data transaksi</h2></th>
         </tr>
         <tr>
 

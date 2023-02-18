@@ -34,7 +34,7 @@
             <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">No hp</th>
-            <th scope="col">Nik</th>
+            <th scope="col">Visa</th>
             <th scope="col">Email</th>
             <th scope="col">Alamat</th>
             <th scope="col">Level</th>
@@ -50,7 +50,7 @@
             <td id="td"><img src="/assets/images/profile/{{ $key->image }}" style="height: 100px; width: 150px" /></td>
             <th scope="row">{{ $key->name }}</th>
             <td scope="row">{{ $key->no_hp }}</td>
-            <td scope="row">{{ $key->nik }}</td>
+            <td scope="row">{{ $key->visa }}</td>
             <td scope="row">{{ $key->email }}</td>
             <td scope="row">{{ $key->alamat }}</td>
             <th scope="row">User</th>

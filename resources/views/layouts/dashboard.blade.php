@@ -6,8 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Dashboard | Sitravel</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+
 
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -30,8 +29,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet">
-
-
+  <link href="{{ asset('assets/image/logo.png') }}" rel="icon">
 </head>
 
 <body>
@@ -52,9 +50,6 @@
             @endif
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            
-            
-            
             <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
@@ -77,95 +72,98 @@
         <div class="logo">
           <h2 class="mb-0">Travel</h2>
         </div>
-@can('superadmin')
-<ul class="side-menu">
+          @can('superadmin')
+          <ul class="side-menu">
+            <li>
+              <a href="/dashboardsuperadmin" class="{{ (request()->routeIs('dashboardsuperadmin')) ? 'active' : '' }}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+            </li>
 
-  <li>
-    <a href="/dataadmin">
-      <i class="bx bx-columns icon"></i>
-      Admin
-    </a>
-  </li>
-  <li>
-    <a href="/datauser">
-      <i class="bx bx-columns icon"></i>
-      User
-    </a>
-  </li>
- 
-</ul>
-@elsecan('admin')
-<ul class="side-menu">
-  <li>
-    <a href="index.html" class="{{ (request()->routeIs('dashboardAdmin')) ? 'active' : '' }}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
-  </li>
+            <li>
+              <a href="/dataadmin"  class="{{ (request()->routeIs('dataadmin.index')) ? 'active' : '' }}">
+                <i class="bx bx-columns icon"></i>
+                Admin
+              </a>
+            </li>
+            <li>
+              <a href="/datauser"  class="{{ (request()->routeIs('datauser')) ? 'active' : '' }}">
+                <i class="bx bx-columns icon"></i>
+                User
+              </a>
+            </li>
+          
+          </ul>
+          @elsecan('admin')
+          <ul class="side-menu">
+            <li>
+              <a href="/dashboardAdmin" class="{{ (request()->routeIs('dashboardAdmin')) ? 'active' : '' }}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+            </li>
 
-  <li>
-    <a href="/jns" class="{{ (request()->routeIs('jns.index')) ? 'active' : '' }}">
-      <i class="bx bx-collection icon"></i>
-      Jenis layanan 
-    </a>
-  </li>
-  <li>
-    <a href="/layanan" class="{{ (request()->routeIs('layanan.index')) ? 'active' : '' }}">
-      <i class="bx bx-folder icon"></i>
-      Paket Travel
-    </a>
-  </li>
-  <li>
-    <a href="/kursi" class="{{ (request()->routeIs('kursi.index')) ? 'active' : '' }}">
-      <i class="bx bx-menu icon"></i>
-      Stok
-    </a>
-  </li>
-  <li>
-    <a href="/detailgambar" class="{{ (request()->routeIs('detailgambar.index')) ? 'active' : '' }}">
-      <i class="bx bx-movie-play icon"></i>
-      Galeri
-    </a>
-  </li>
-  <li>
-    <a href="/laporan" class="{{ (request()->routeIs('laporan')) ? 'active' : '' }}">
-      <i class="bx bx-columns icon"></i>
-      Laporan
-    </a>
-  </li>
-</ul>
-@elsecan('user')
-@if ($usercek)
-  
+            <li>
+              <a href="/jns" class="{{ (request()->routeIs('jns.index')) ? 'active' : '' }}">
+                <i class="bx bx-collection icon"></i>
+                Jenis layanan 
+              </a>
+            </li>
+            <li>
+              <a href="/layanan" class="{{ (request()->routeIs('layanan.index')) ? 'active' : '' }}">
+                <i class="bx bx-folder icon"></i>
+                Paket Travel
+              </a>
+            </li>
+            <li>
+              <a href="/kursi" class="{{ (request()->routeIs('kursi.index')) ? 'active' : '' }}">
+                <i class="bx bx-menu icon"></i>
+                Stok
+              </a>
+            </li>
+            <li>
+              <a href="/detailgambar" class="{{ (request()->routeIs('detailgambar.index')) ? 'active' : '' }}">
+                <i class="bx bx-movie-play icon"></i>
+                Galeri
+              </a>
+            </li>
+            <li>
+              <a href="/laporan" class="{{ (request()->routeIs('laporan')) ? 'active' : '' }}">
+                <i class="bx bx-columns icon"></i>
+                Laporan
+              </a>
+            </li>
+          </ul>
+          @elsecan('user')
+          @if ($usercek)
+            
 
-<ul class="side-menu">
+          <ul class="side-menu">
 
 
-  <li>
-    <a href="{{ route('keranjang',Auth::id()) }}">
-      <i class="bx bx-columns icon"></i>
-      Keranjang
-    </a>
-  </li>
-  <li>
-    <a href="/">
-      <i class="bx bx-columns icon"></i>
-      Kembali ke menu
-    </a>
-  </li>
-  <li>
-    <a href="{{ route('berhasil',Auth::id()) }}">
-      <i class="bx bx-columns icon"></i>
-      Tiket yang anda pesan
-    </a>
-  </li>
-</ul>
-@endif
-@endcan
+            <li>
+              <a href="{{ route('keranjang',Auth::id()) }}" class="{{ (request()->routeIs('keranjang',Auth::id())) ? 'active' : '' }}">
+                <i class="bx bx-columns icon"></i>
+                Keranjang
+              </a>
+            </li>
+            <li>
+              <a href="/" >
+                <i class="bx bx-columns icon"></i>
+                Kembali ke menu
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('berhasil',Auth::id()) }}" class="{{ (request()->routeIs('berhasil',Auth::id())) ? 'active' : '' }}">
+                <i class="bx bx-columns icon"></i>
+                Tiket yang anda pesan
+              </a>
+            </li>
+          </ul>
+          @endif
+          @endcan
        
       </div>
     </div>
   </div>
   <div class="sidebar-overlay"></div>
       <section class="section dashboard">
-  <div class="content-start transition">
+  <div class="content-start transition" style="color: black;">
     <div class="container-fluid dashboard">
       <div class="row">
         <div class="col mb-4">
@@ -174,7 +172,7 @@
       </div>
       <div class="row">
 
-				<!--Start Carousel-->
+	
 				
       
       @yield('isi')
@@ -195,17 +193,9 @@
         $(".sidebar").toggleClass("sidebar-show");
         $(".sidebar-overlay").toggleClass("d-block");
       });
-    });
-    const allDropdown = document.querySelectorAll("#sidebar .side-dropdown");
-    const sidebar = document.getElementById("sidebar");
+    });   
   </script>
-</body>
 
-
-
-
-
- 
   <script type="text/javascript">
     $(document).ready(function (e) {
        $("#image").change(function () {
@@ -219,7 +209,7 @@
        });
     });
  </script>
-  <!-- Vendor JS Files -->
+
   @if (Session::has('success'))
   <script>
  

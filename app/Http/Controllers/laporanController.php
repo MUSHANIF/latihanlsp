@@ -21,7 +21,8 @@ class laporanController extends Controller
         return view('admin.laporan.index', compact('datas','data'));
     }
     public function excel(){
-      
+        ob_end_clean(); // this
+        ob_start();
         return Excel::download(new TransaksiExport, 'laporantransaksi.xlsx');
       
     }

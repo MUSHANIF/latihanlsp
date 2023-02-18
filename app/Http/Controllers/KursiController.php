@@ -121,7 +121,7 @@ class kursiController extends Controller
         $model->save();
 
         toastr()->success('Berhasil di ubah!', 'Sukses');
-        return redirect('/kursi');
+        return redirect('/kursi')->with('success','berhasil di ubah');
     }
 
     /**
@@ -135,6 +135,6 @@ class kursiController extends Controller
         $hapus = kursi::find($id);
         $hapus->delete();
         toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('kursi');
+        return redirect('kursi')->with('success','berhasil di hapus');
     }
 }

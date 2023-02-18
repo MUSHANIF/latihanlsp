@@ -6,19 +6,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HOME | MUMUS</title>
+    <title>HOME | Sitravel</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="/assets/splide.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />    
     <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-
-
-    
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />    
+    <script src="
+    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+    " rel="stylesheet">
+    <link href="assets/image/logo.png" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+    />
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
                     * {
@@ -246,7 +252,7 @@ margin-top: 40px;
   margin-bottom: 20px;
 }
 .shipping-info {
-  background-color: #f9f9f9;
+  
   padding: 50px 0;
 }
 
@@ -311,15 +317,45 @@ margin-top: 40px;
   margin-top: 2px;
   color: #777;
 }
+.testimoni  .card{
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  
+}
+.testimoni  .card .card-im{
+  width: 80px;
+    height: 80px;
+    margin: auto;
+    border: 2px solid #d9dadb;
+    border-radius: 100px;
+  
+}
+.testimoni .card .card-body .card-text{
+  font-size: 15px;
+  text-align: center;
+}
+.testimoni .card .card-body .card-title{
+  font-size: 17px;
+
+  font-weight: 700;
+  text-align: center;
+  
+}
+@media (max-width: 767px) {
+  .testimoni  .card{
+    margin: 0 auto;
+  }
+}
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
-  <body>\
+  <body>
     @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg bg-trasparent fixed-top shadow-lg p-3 mb-5 bg-body-tertiary rounded ">
         <div class="container">
-          <a class="navbar-brand" href="#"></a> <img src="{{ asset('assets/image') }}" alt="">
+          <a class="navbar-brand" href="#"></a> <img src="{{ asset('assets/image/logo.png') }}" width="150px" alt="">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -328,16 +364,15 @@ margin-top: 40px;
             
               <li class="nav-item  mx-3">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-            
-              <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Jenis layanan</a>
-              </li>
+              </li>                        
               <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Paket</a>
               </li>
               <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Info & Contact</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#">Testimonial</a>
               </li>
             </ul>
             <ul class="navbar-nav  ">
@@ -367,7 +402,7 @@ margin-top: 40px;
                         </form></li>
                     </ul>
                     @else
-                    <a href="{{ route('login') }}" class="btn rounded ">Get started</a>
+                    <a href="{{ route('login') }}" class="btn rounded d-flex justify-content-center mx-auto text-center ">Get started</a>
                     
                 @endauth
 
@@ -381,25 +416,11 @@ margin-top: 40px;
           </div>
         </div>
       </nav>
-      {{-- <section class="home">
-        <div class="container">
-            <div class="row pt-5 pb-5">
-                <div class="col-md-6 mt-10 justify-content-center kiri">
-                    <h1>Harga terbaik di kelas nya</h1>
-                    <p>belilah produk di toko kami Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, commodi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, odit. Ullam, porro. Perspiciatis error quae, dolor possimus quidem nihil. Omnis.</p>
-                    <button type="button" class="btn rounded ">Get started</button>
-                </div>
-                <div class="col-md-6">
-                    <img src="/assets/image/pp.gif" alt="">
 
-                </div>
-            </div>
-        </div>
-      </section> --}}
       <section class="splide" aria-labelledby="carousel-heading">
         
       
-        <div class="splide__track">
+        <div class="splide__track " style="width: 100%; height: 100%; ">
               <ul class="splide__list">
                 <li class="splide__slide"><img src="/assets/image/qw.jpg" alt=""></li>
                   <li class="splide__slide"><img src="/assets/image/er.jpg" alt=""></li>
@@ -419,7 +440,7 @@ margin-top: 40px;
                     </div>
                     <div class="media-body">
                         <h5>Registrasi</h5>
-                        <span>On order over $99</span>
+                        <span>Pastikan anda memiliki akun!</span>
                     </div>
                 </li>
              
@@ -429,7 +450,7 @@ margin-top: 40px;
                     </div>
                     <div class="media-body">
                         <h5>Pilih destinasi</h5>
-                        <span>Hassle Free Shopping.</span>
+                        <span>Pilihan paket destinasi kami pasti bagus</span>
                     </div>
                 </li>
                 <li>
@@ -438,7 +459,7 @@ margin-top: 40px;
                   </div>
                   <div class="media-body">
                       <h5>Pembayaran</h5>
-                      <span>On order over $99</span>
+                      <span>Bayar paket yang sudah di tentukan</span>
                   </div>
               </li>
               <li>
@@ -447,54 +468,14 @@ margin-top: 40px;
                 </div>
                 <div class="media-body">
                     <h5>Nikmati perrjalanan</h5>
-                    <span>On order over $99</span>
+                    <span>Nikmati pernjalan yang aman dan nyaman</span>
                 </div>
             </li>
             </ul>
         </div>
     </section>
-      {{-- <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h4 class="fw-semibold ">Jenis Layanan</h4>
-                     
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered alteration in some form.</p>
-                </div>
-               
-            </div>
-            <div class="row ">
-                @foreach ($datas as $key )
-                  
-                
-                    <div class="col-md-4   ">
-                        <div class="card ">
-                            <a href="" class="text-decoration-none">
-                          <div class="row ">
-                           
-                            <div class="col-md-4">
-                              <img class="card-img " src="/assets/images/jnslayanan/{{ $key->image }}" style="width: 100px;" alt="Card image" />
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h5 class="card-title">{{ $key->name }}</h5>
-                                
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                              </div>
-                            </div>
-                     
-                          </div>
-                        </a>
-                        </div>
-                      </div>
-                      @endforeach
-                     
-                        
-            </div>
-        </div>
-      </section> --}}
-      <section class="trending-product section" style="margin-top: 40px; padding-top: 40px;">
+      
+      <section class="trending-product section" style="margin-top: 40px; padding: 40px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -503,8 +484,7 @@ margin-top: 40px;
                             <h4 class="fw-semibold ">Paket yang tersedia</h4>
                             
                         
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form.</p>
+                        <p>Kami selalu menyediakan paket - paket pilihan dengan kualitas terbaik!</p>
                     </div>
                 </div>
             </div>
@@ -565,7 +545,7 @@ margin-top: 40px;
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Product -->
+                    
                 </div>
                 @endforeach
             </div>
@@ -592,10 +572,60 @@ margin-top: 40px;
           </div>
         </div>
     </section>
+    <section class="testimoni" style="margin-top: 40px; padding-top: 40px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+              <div class="section-title text-center">                  
+                      <h4 class="fw-semibold ">Testimonial</h4>                                        
+                  <p>Apa saja kata customer kami yang sudah memakai jasa kami?</p>
+              </div>
+          </div>
+      </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12 col-sm-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+             
+              <div class="card d-flex justify-content-center align-items-center" style="width: 18rem; padding: 10px;">
+                <img src="{{ asset('assets/images/profile/person_1.jpg') }}" class="card-im justify-content-center" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h2 class="card-title">Mumus</h2>
+                </div>
+              </div>
+                <div class="card d-flex justify-content-center align-items-center" style="width: 18rem; padding: 10px;">
+                <img src="{{ asset('assets/images/profile/person_1.jpg') }}" class="card-im justify-content-center" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h2 class="card-title">Devia</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
     <section id="footer" >
   <footer class="text-center " style="margin-top: 50px; margin-bottom: 10px; padding-top: 30px">
     <hr>
-    <p>Copyright &copy; 2022 By Mumus</p>
+    <p>Copyright &copy; 2023 By Sitravel</p>
+    <div
+    x-data="{
+        search: '',
+        @foreach ($data as $dat )
+                
+        items: [ {{ json_encode($dat->name) }}],
+ @endforeach
+        get filteredItems() {
+            return this.items.filter(
+                i => i.startsWith(this.search)
+            )
+        }
+    }"
+>
+    
+</div>
 </footer>
 <script>
   $(document).ready(function(){
@@ -629,10 +659,17 @@ margin-top: 40px;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+  <!-- Owl Carousel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script>
-    var splide = new Splide( '.splide', {
+var splide = new Splide( '.splide', {
   type   : 'loop',
   padding: '5rem',
+  focus  : 'center',  
+  autoplay: true,
+  interval: 1500,
+  speed: 400,
 } );
 
 splide.mount();

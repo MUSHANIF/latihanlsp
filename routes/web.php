@@ -16,25 +16,11 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     $datas = jnslayanan::all();
-    $user = Auth::id();
-    
-    
+    $user = Auth::id();    
     $data = layanan::with(['layanan','carts','kurs'])
     ->where('status', 1)->get();
-
     return view('welcome',compact('datas','data','user'));
 });
 Route::get('/detail/{id}', function ($id) {
@@ -47,12 +33,10 @@ Route::get('/detail/{id}', function ($id) {
     ->where('layanans.status', 1) ->whereRelation('gallery', 'layananid' ,$id) ->get();
     $datas = layanan::with(['layanan','carts','gallery','kurs'])
     ->join('galleries', 'galleries.layananid', '=', 'layanans.id')
-    ->whereRelation('gallery', 'layananid' ,$id)->groupBy('layananid')->get();
-    
+    ->whereRelation('gallery', 'layananid' ,$id)->groupBy('layananid')->get();    
     return view('detail',compact('data','user','datas','tambah'));
 })->name('detail');
-Route::group(['middleware' => ['auth', 'verified']], function () {
- 
+Route::group(['middleware' => ['auth']], function () { 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -61,12 +45,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/dashboardAdmin', [dashboardController::class, 'index'])->name('dashboardAdmin');
         Route::resource('layanan', layananController::class);
         Route::resource('kursi', kursiController::class);
-        Route::get('/laporan', [laporanController::class, 'index']);
+        Route::get('/laporan', [laporanController::class, 'index'])->name('laporan');
         Route::get('/laporanexcel', [laporanController::class, 'excel']);
         Route::get('/laporanpdf', [laporanController::class, 'pdf']);
-        Route::resource('detailgambar', GalleryController::class);
-        
-       
+        Route::resource('detailgambar', GalleryController::class);               
     });
     Route::middleware('user')->group(function () {
         Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');

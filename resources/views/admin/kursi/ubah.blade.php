@@ -9,7 +9,7 @@
   </ol>
 @endsection
 @section('isi')
-<div class="card">
+<div class="card" style="color: black;">
   <div class="card-body">
     <h5 class="card-title">Form tambah jenis kursi</h5>      
     <form action="{{ route('kursi.update',$datas->id) }}" method="POST" class="row g-3" enctype="multipart/form-data">

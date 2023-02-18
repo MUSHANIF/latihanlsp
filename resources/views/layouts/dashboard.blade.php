@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - Mumus</title>
+  <title>Dashboard | Sitravel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,7 +46,10 @@
       <ul>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @if ($usercek )                          
+            
             <img src="/assets/images/profile/{{ Auth::user()->validationn->image }}" alt="" />
+            @endif
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             
@@ -76,9 +79,6 @@
         </div>
 @can('superadmin')
 <ul class="side-menu">
-  {{-- <li>
-    <a href="/dashboardsuperamdin" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
-  </li> --}}
 
   <li>
     <a href="/dataadmin">
@@ -97,41 +97,44 @@
 @elsecan('admin')
 <ul class="side-menu">
   <li>
-    <a href="index.html" class="active"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
+    <a href="index.html" class="{{ (request()->routeIs('dashboardAdmin')) ? 'active' : '' }}"> <i class="bx bxs-dashboard icon"></i> Dashboard </a>
   </li>
 
   <li>
-    <a href="/jns">
+    <a href="/jns" class="{{ (request()->routeIs('jns.index')) ? 'active' : '' }}">
       <i class="bx bx-collection icon"></i>
       Jenis layanan 
     </a>
   </li>
   <li>
-    <a href="/layanan">
+    <a href="/layanan" class="{{ (request()->routeIs('layanan.index')) ? 'active' : '' }}">
       <i class="bx bx-folder icon"></i>
       Paket Travel
     </a>
   </li>
   <li>
-    <a href="/kursi">
+    <a href="/kursi" class="{{ (request()->routeIs('kursi.index')) ? 'active' : '' }}">
       <i class="bx bx-menu icon"></i>
       Stok
     </a>
   </li>
   <li>
-    <a href="/detailgambar">
+    <a href="/detailgambar" class="{{ (request()->routeIs('detailgambar.index')) ? 'active' : '' }}">
       <i class="bx bx-movie-play icon"></i>
       Galeri
     </a>
   </li>
   <li>
-    <a href="/laporan">
+    <a href="/laporan" class="{{ (request()->routeIs('laporan')) ? 'active' : '' }}">
       <i class="bx bx-columns icon"></i>
       Laporan
     </a>
   </li>
 </ul>
 @elsecan('user')
+@if ($usercek)
+  
+
 <ul class="side-menu">
 
 
@@ -154,6 +157,7 @@
     </a>
   </li>
 </ul>
+@endif
 @endcan
        
       </div>

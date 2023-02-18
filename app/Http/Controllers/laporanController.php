@@ -22,7 +22,7 @@ class laporanController extends Controller
     }
     public function excel(){
       
-        return Excel::download(new TransaksiExport, 'transaksis.xlsx');
+        return Excel::download(new TransaksiExport, 'laporantransaksi.xlsx');
       
     }
     public function pdf(){

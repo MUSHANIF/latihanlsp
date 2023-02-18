@@ -11,7 +11,7 @@
             
      
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Layanan: </label>
+            <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Paket: </label>
             
             <div class="col-sm-10 mt-2">
             @foreach ($layanan as $m )
@@ -20,7 +20,7 @@
          </div>
         </div>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-default-name">Jumlah layanan dan tiket yang di pesan: </label>
+            <label class="col-sm-2 col-form-label" for="basic-default-name">Jumlah Paket dan tiket yang di pesan: </label>
             
             <div class="col-sm-10 mt-3">
               {{ $jmlh }} untuk {{ $orang }} Orang

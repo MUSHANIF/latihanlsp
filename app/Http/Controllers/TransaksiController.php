@@ -20,10 +20,7 @@ use Illuminate\Http\Request;
 use Auth;
 class TransaksiController extends Controller
 {
-    //Status = 0 adalah belum melakukan pembayaran
-     //Status = 1 adalah sudah melakukan pembayaran
-    //status = 2 adalah motor sudah di kembalikan
-    //status = 3  adalah motor yang terlambat di kembalikan
+  
     public function keranjang(Request $request , $id)
     {
         $cek =  cart::where('userid', $id)->where('status', 0)->first();
@@ -86,7 +83,7 @@ class TransaksiController extends Controller
     }
     public function hapus(Request $request, $id)
     {
-        //error
+    
         $prod = kursi::where('status',  1 )->first();
         kursi::where('layananid',$request->layananid)->update([
            'nomor' => $prod->nomor + $request->nomor,

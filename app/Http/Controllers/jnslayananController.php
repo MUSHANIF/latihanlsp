@@ -60,7 +60,7 @@ class jnslayananController extends Controller
         $model->save();
 
         toastr()->success('Berhasil di buat!', 'Sukses');
-        return redirect('/jns');
+        return redirect('/jns')->with('success','berhasil di tambahkan ');
     }
 
     /**
@@ -118,7 +118,7 @@ class jnslayananController extends Controller
         $model->save();
 
         toastr()->success('Berhasil di ubah!', 'Sukses');
-        return redirect('/jns');
+        return redirect('/jns')->with('success','berhasil di ubah ');
     }
 
     /**
@@ -132,6 +132,6 @@ class jnslayananController extends Controller
         $hapus = jnslayanan::find($id);
         $hapus->delete();
         toastr()->info('Berhasil di hapus!', 'Sukses');
-        return redirect('jns');
+        return redirect('jns')->with('success','berhasil di hapus');
     }
 }

@@ -67,7 +67,7 @@ class ProfileController extends Controller
       
         $model->userid = $request->userid;
         $model->image = $request->image;
-        $model->nik = $request->nik;
+        $model->visa = $request->visa;
         $model->no_hp = $request->no_hp;
         $model->alamat = $request->alamat;
      
@@ -80,7 +80,7 @@ class ProfileController extends Controller
 
 
         $validasi = Validator::make($data, [
-            'nik' => 'required|max:16|unique:validations',
+            'visa' => 'required|max:16|unique:validations',
            
             'no_hp' => 'required|max:15',
             'alamat' => 'required|max:30',

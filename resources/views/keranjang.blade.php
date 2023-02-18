@@ -9,12 +9,12 @@
       <h5 class="card-title">Mohon isi data lengkap anda!</h5>
 
       <!-- Floating Labels Form -->
-      <form method="POST" action="{{ route('validation') }}" class="row g-3" enctype="multipart/form-data" >
+      <form method="POST" action="{{ route('validation') }}" class="row g-3 text-dark" enctype="multipart/form-data" >
         @csrf
         <div class="col-md-12">
           <div class="form-floating">
-            <input type="number" class="form-control" name="nik" id="floatingName" placeholder="Your Name">
-            <label for="floatingName">Nik</label>
+            <input type="number" class="form-control" name="visa" id="floatingName" placeholder="Your Name">
+            <label for="floatingName">Visa</label>
           </div>
         </div>
         <div class="col-md-12">
